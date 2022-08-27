@@ -1,0 +1,28 @@
+config:
+  boot.autostart: "true"
+  limits.cpu.allowance: 10%
+  limits.memory: 1GB
+  security.privileged: "true"
+  user.network-config: |
+    network:
+      version: 2
+      ethernets:
+        eth0:
+          dhcp4: true
+          dhcp6: true
+  user.user-data: |
+    #include
+    http://www.crylle.local/cloud-init/basic.yaml
+    http://www.crylle.local/cloud-init/packages.yaml
+description: Crylle Profile
+devices:
+  eth0:
+    name: eth0
+    nictype: bridged
+    parent: qvs0
+    type: nic
+  root:
+    path: /
+    pool: default
+    type: disk
+name: crylle
