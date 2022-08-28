@@ -21,7 +21,7 @@ config:
 description: Profile for host dev1
 devices:
   eth0:
-    hwaddr: 00:16:3e:00:00:01
+    hwaddr: 02:42:cc:00:00:01
     name: eth0
     nictype: bridged
     parent: qvs0
