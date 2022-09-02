@@ -1,0 +1,37 @@
+config:
+  boot.autostart: "true"
+  boot.autostart.delay: "300"
+  boot.autostart.priority: "9"
+  boot.stop.priority: "11"
+  limits.cpu: "1"
+  limits.cpu.allowance: 10%
+  limits.memory: 1GB
+  security.privileged: "true"
+  user.network-config: |
+    network:
+      version: 2
+      ethernets:
+        eth0:
+          dhcp4: true
+          dhcp6: true
+  user.user-data: |
+    #include
+    http://www.crylle.local/cloud-init/dev1.yaml
+    http://www.crylle.local/cloud-init/basic.yaml
+    http://www.crylle.local/cloud-init/packages.yaml
+    http://www.crylle.local/cloud-init/ansible-pull.yaml
+    http://www.crylle.local/cloud-init/cloud-init-disable.yaml
+    http://www.crylle.local/cloud-init/reboot.yaml
+description: Profile for host dev2
+devices:
+  eth0:
+    hwaddr: 02:42:cc:00:00:02
+    name: eth0
+    nictype: bridged
+    parent: qvs0
+    type: nic
+  root:
+    path: /
+    pool: default
+    type: disk
+name: dev2
