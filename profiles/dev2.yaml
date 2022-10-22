@@ -6,7 +6,11 @@ config:
   limits.cpu: "1"
   limits.cpu.allowance: 10%
   limits.memory: 1GB
+  limits.memory.swap: "false"
+  linux.kernel_modules: ip_tables,ip6_tables,nf_nat,overlay,br_netfilter
+  raw.lxc: "lxc.apparmor.profile=unconfined\nlxc.cap.drop= \nlxc.cgroup.devices.allow=a\nlxc.mount.auto=proc:rw sys:rw\nlxc.mount.entry = /dev/kmsg dev/kmsg none defaults,bind,create=file"
   security.privileged: "true"
+  security.nesting: "true"
   user.network-config: |
     network:
       version: 2
@@ -16,12 +20,10 @@ config:
           dhcp6: true
   user.user-data: |
     #include
-    http://www.crylle.local/cloud-init/dev1.yaml
+    http://www.crylle.local/cloud-init/dev2.yaml
     http://www.crylle.local/cloud-init/basic.yaml
     http://www.crylle.local/cloud-init/packages.yaml
     http://www.crylle.local/cloud-init/ansible-pull.yaml
-    http://www.crylle.local/cloud-init/cloud-init-disable.yaml
-    http://www.crylle.local/cloud-init/reboot.yaml
 description: Profile for host dev2
 devices:
   eth0:
